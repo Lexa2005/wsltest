@@ -1,0 +1,57 @@
+.topblock {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //background-image: url("/assets/crow.png");
+
+  .left {
+    display: grid;
+    gap: 8px;
+
+    h5 {
+      margin: 0;
+      padding: 0;
+      color: gray;
+    }
+    h1 {
+      margin: 0;
+      padding: 0;
+      font-size: 48px;
+      letter-spacing: 1px;
+      color: #283436;
+      font-weight: 700;
+      max-width: 750px;
+      transition: 0.2s;
+      margin-bottom: 60px;
+
+      @media (max-width: 800px) {
+        font-size: 36px;
+        margin-bottom: 36px;
+      }
+    }
+    h3 {
+      font-weight: 400;
+      max-width: 700px;
+      font-size: 20px;
+      transition: 0.2s;
+      line-height: 32px;
+
+      @media (max-width: 800px) {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+      }
+    }
+    #feedback {
+      margin-top: 40px;
+      max-width: 200px;
+      font-size: 16px;
+    }
+  }
+  .right {
+    @media (max-width: 800px) {
+      display: none;
+    }
+  }
+}

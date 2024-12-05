@@ -1,0 +1,19 @@
+/*@font-face {*/
+/*    font-family: 'Roboto';*/
+/*    src: local("Roboto"), url("./../assets/Roboto/Roboto-Bold.ttf") format('truetype');*/
+/*    font-weight: auto;*/
+/*}*/
+
+* {
+    /*font-family: "Lucida Grande", Helvetica, Arial, sans-serif;*/
+    /*font-family: "Roboto", sans-serif;*/
+}
+
+body {
+
+}
+
+a {
+    color: #00B7FF;
+}
+

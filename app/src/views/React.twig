@@ -1,0 +1,15 @@
+{% extends './layout/layout.twig' %}
+
+
+{% block body %}
+  <script>
+    var configuration = '{{ configuration }}';
+  </script>
+  <div id="root"></div>
+  {% if ENV == "production" %}
+{#    <link href="/site/dist/css/app.css" rel="stylesheet">#}
+    <script defer="defer" src="/site/build/static/js/main.js"></script>
+  {% else %}
+    <script defer src="http://localhost:3001/static/js/bundle.js"></script>
+  {% endif %}
+{% endblock %}

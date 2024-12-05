@@ -1,0 +1,15 @@
+{
+  "allow_only": ["*"],
+  "debug_mode": true,
+  "global_vars": {
+    "env": "production"
+  },
+  "namespaces": {},
+  "twig_options": {
+    "autoescape": true,
+    "cache": false,
+    "charset": "utf-8",
+    "debug": true,
+    "strict_variables": true
+  }
+}

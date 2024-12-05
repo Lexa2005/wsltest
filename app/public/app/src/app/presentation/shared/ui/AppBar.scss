@@ -1,0 +1,50 @@
+.appbar {
+  padding: 5px 0;
+  display: flex;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  background: #FFFFFF;
+
+  .right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    .burger {
+      display: grid;
+      gap: 3.25px;
+      cursor: pointer;
+
+      div {
+        width: 32.5px;
+        height: 4.5px;
+        border-radius: 2px;
+        background: black;
+      }
+    }
+    .feedback {
+      @media (max-width: 800px) {
+        font-size: 10px;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.drawer {
+  padding: 18px 10px;
+
+  .close {
+    display: flex;
+    justify-content: flex-start;
+    @media (max-width: 800px) {
+      justify-content: flex-end;
+    }
+  }
+}

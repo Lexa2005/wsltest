@@ -1,0 +1,16 @@
+{% extends './layout/layout.twig' %}
+
+{% block body %}
+    <script>
+        var city = {{ city }};
+        var roadmap = {{ roadmap }};
+    </script>
+    <div id="app"></div>
+    {% if ENV == "production" %}
+        <link href="/spa/dist/css/app.css" rel="stylesheet">
+        <script defer src="/spa/dist/js/main.js"></script>
+    {% else %}
+        <script defer src="http://localhost:5001/js/main.js"></script>
+    {% endif %}
+
+{% endblock %}

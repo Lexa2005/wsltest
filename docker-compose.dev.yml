@@ -1,0 +1,61 @@
+version: '3'
+services:
+  app:
+    container_name: ktt_app
+    restart: always
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+      - "3001:3000"
+    build:
+      context: ./containers/backend/dev
+    volumes:
+      - './app:/app'
+
+  nginx:
+    container_name: ktt_dev_nginx
+    restart: always
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        - TYPE=dev
+      context: ./containers/nginx/dev
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8081:8081"
+
+  postgis:
+    container_name: ktt_postgis
+    restart: always
+    image: postgis/postgis:14-3.3
+    ports:
+      - "5432:5432"
+    volumes:
+      - ktt_postgresvolume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=ktt
+      - POSTGRES_USER=ktt_user
+      - POSTGRES_PASSWORD=3b2797efdd871707af524ba41b78bd22
+
+  redis:
+    container_name: ktt_redis
+    restart: always
+    image: redis:6-buster
+    ports:
+      - "6379:6379"
+    volumes:
+      - ktt_redissvolume:/data
+    command: redis-server --requirepass k6B6daVKj8n~am
+
+  swagger:
+    container_name: ktt_swagger
+    restart: always
+    image: swaggerapi/swagger-ui:latest
+    environment:
+      - API_URL=https://dev.kantolina.ru/api/v1/swagger/  #http://localhost:80/api/swagger
+
+volumes:
+  ktt_postgresvolume:
+  ktt_redissvolume:
+
