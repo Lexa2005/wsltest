@@ -1,19 +1,4 @@
-<h1>m9m9ra.com web server</h1>
-<hr/>
-- 👋 Hi, I’m @m9m9ra <br/>
-- 👀 I’m interested in Android & ios development... <br/>
-- 🌱 I’m currently learning React Native, and Flutter... <br/>
-- 💞️ I’m looking to collaborate on ... <br/>
-- 📫 How to reach me ... <br/>
-- 😄 Pronouns: ... <br/>
-- ⚡ Fun fact: It`s my server ... <br/>
-
-m9m9ra/m9m9ra is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
-
-<h3>-------------------------------------------------------------------------</h3>
-
-<h1>Docker + PHP + Nginx + Vue3.js + MySQL + PostgreSQL + Swagger + Redis + Beanstalk + Electron</h1>
+<h1>Docker + Nginx + Vue3.js + PostgreSQL + Swagger + Redis</h1>
 <h2>Система предназначенная
 для туристов и гостей Калининграда</h2>
 
