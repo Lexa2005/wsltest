@@ -15,13 +15,13 @@ export class BookController {
 
       const user = await this.userRepository.findOneBy({ id: userId });
       if (!user) {
-        return response.status(404).json({ message: "User not found" });
+        return response.status(404).json({ message: "Пользователь не найден" });
       }
 
       const book = this.bookRepository.create({ title, author, user });
       await this.bookRepository.save(book);
 
-      return response.status(201).json({ message: "Book added successfully" });
+      return response.status(201).json({ message: "Книга успешно добавлена" });
     } catch (error) {
       next(error);
     }
@@ -42,13 +42,13 @@ export class BookController {
       const book = await this.bookRepository.findOneBy({ id });
 
       if (!book) {
-        return response.status(404).json({ message: "Book not found" });
+        return response.status(404).json({ message: "Книга не найдена" });
       }
 
       await this.bookRepository.remove(book);
       return response
         .status(200)
-        .json({ message: "Book removed successfully" });
+        .json({ message: "Книга успешно удалена" });
     } catch (error) {
       next(error);
     }
@@ -70,7 +70,7 @@ export class BookController {
         return response
           .status(400)
           .json({
-            message: "Provide at least one search parameter: title or author",
+            message: "Укажите хотя бы один параметр поиска: название или автор",
           });
       }
 

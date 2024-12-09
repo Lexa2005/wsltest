@@ -19,12 +19,12 @@ export class UserController {
     try {
       const id = parseInt(request.params.id);
       if (isNaN(id)) {
-        return { message: "Invalid user ID", status: 400 };
+        return { message: "Неверный ID пользователя", status: 400 };
       }
 
       const user = await this.userRepository.findOne({ where: { id } });
       if (!user) {
-        return { message: "User not found", status: 404 };
+        return { message: "Пользователь не найден", status: 404 };
       }
 
       return user;
@@ -42,7 +42,7 @@ export class UserController {
       });
 
       if (existingUser) {
-        return { message: "User already registered", status: 403 };
+        return { message: "Пользователь уже зарегистрирован", status: 403 };
       }
 
       const hashedPassword = this.hashPassword(password);
@@ -55,7 +55,7 @@ export class UserController {
       });
 
       await this.userRepository.save(user);
-      return { message: "User registered successfully", status: 200 };
+      return { message: "Пользователь успешно зарегистрирован", status: 200 };
     } catch (error) {
       next(error);
     }
@@ -71,10 +71,10 @@ export class UserController {
       });
 
       if (!user || !this.comparePassword(password, user.password)) {
-        return { message: "Invalid credentials", status: 401 };
+        return { message: "Неверные данные", status: 401 };
       }
 
-      return { message: "Authentication successful", status: 200 };
+      return { message: "Аутентификация прошла успешно", status: 200 };
     } catch (error) {
       next(error);
     }
@@ -84,16 +84,16 @@ export class UserController {
     try {
       const id = parseInt(request.params.id);
       if (isNaN(id)) {
-        return { message: "Invalid user ID", status: 400 };
+        return { message: "Неверный ID пользователя", status: 400 };
       }
 
       const userToRemove = await this.userRepository.findOneBy({ id });
       if (!userToRemove) {
-        return { message: "User not found", status: 404 };
+        return { message: "Пользователь не найден", status: 404 };
       }
 
       await this.userRepository.remove(userToRemove);
-      return { message: "User has been removed", status: 200 };
+      return { message: "Пользователь был удалён", status: 200 };
     } catch (error) {
       next(error);
     }
