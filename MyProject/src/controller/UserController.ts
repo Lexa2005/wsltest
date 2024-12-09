@@ -8,7 +8,7 @@ export class UserController {
 
   async all(request: Request, response: Response, next: NextFunction) {
     try {
-      const users = await this.userRepository.find();
+      const users = await this.userRepository.find({ relations: ["books"] });
       return users;
     } catch (error) {
       next(error);

@@ -50,4 +50,11 @@ export const Routes = [
     controller: BookController,
     action: "removeBook",
   },
+
+  {
+    method: "get",
+    route: "/books/search",
+    controller: BookController,
+    action: "searchBooks",
+  },
 ];

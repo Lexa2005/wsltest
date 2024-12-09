@@ -2,6 +2,8 @@ import { AppDataSource } from "../data-source";
 import { Request, Response, NextFunction } from "express";
 import { Book } from "../entity/Book";
 import { User } from "../entity/User";
+import { ILike } from "typeorm";
+
 
 export class BookController {
   private bookRepository = AppDataSource.getRepository(Book);
@@ -44,7 +46,40 @@ export class BookController {
       }
 
       await this.bookRepository.remove(book);
-      return response.status(200).json({ message: "Book removed successfully" });
+      return response
+        .status(200)
+        .json({ message: "Book removed successfully" });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async searchBooks(request: Request, response: Response, next: NextFunction) {
+    try {
+      const { title, author } = request.query;
+
+      const searchCriteria: any = [];
+      if (title) {
+        searchCriteria.push({ title: ILike(`%${title}%`) });
+      }
+      if (author) {
+        searchCriteria.push({ author: ILike(`%${author}%`) });
+      }
+
+      if (searchCriteria.length === 0) {
+        return response
+          .status(400)
+          .json({
+            message: "Provide at least one search parameter: title or author",
+          });
+      }
+
+      const books = await this.bookRepository.find({
+        where: searchCriteria,
+        relations: ["user"], // Загрузить информацию о пользователе
+      });
+
+      return response.status(200).json(books);
     } catch (error) {
       next(error);
     }
