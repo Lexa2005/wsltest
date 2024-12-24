@@ -57,4 +57,13 @@ export const Routes = [
     controller: BookController,
     action: "searchBooks",
   },
+
+  {
+    method: "put",
+    route: "/users/:id",
+    controller: UserController,
+    action: "updateUser",
+  },
 ];
+
+

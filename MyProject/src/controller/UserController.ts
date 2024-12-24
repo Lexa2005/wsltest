@@ -107,4 +107,44 @@ export class UserController {
     const hashedInputPassword = this.hashPassword(inputPassword);
     return hashedInputPassword === storedPasswordHash;
   }
+
+  async updateUser(request: Request, response: Response, next: NextFunction) {
+    try {
+      const id = parseInt(request.params.id);
+      if (isNaN(id)) {
+        return response.status(400).json({ message: "Некорректный ID пользователя" });
+      }
+  
+      const { oldPassword, firstName, lastName, age, password } = request.body;
+  
+      // Найти пользователя по ID
+      const user = await this.userRepository.findOne({
+        where: { id },
+        select: ["id", "password", "firstName", "lastName", "age"],
+      });
+  
+      if (!user) {
+        return { message: "Пользователь не найден", status: 404 };
+      }
+  
+      // Проверить текущий пароль
+      if (!this.comparePassword(oldPassword, user.password)) {
+        return { message: "Неверный текущий пароль", status: 403 };
+      }
+  
+      // Обновить поля пользователя
+      if (firstName) user.firstName = firstName;
+      if (lastName) user.lastName = lastName;
+      if (age) user.age = age;
+      if (password) user.password = this.hashPassword(password);
+  
+      // Явно указать, что запись обновляется
+      await this.userRepository.save(user);
+  
+      return { message: "Пользователь обновлен успешно", user, status: 200 };
+    } catch (error) {
+      next(error);
+    }
+  }
+  
 }
