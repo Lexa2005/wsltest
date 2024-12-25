@@ -141,7 +141,7 @@ export class UserController {
       // Явно указать, что запись обновляется
       await this.userRepository.save(user);
   
-      return { message: "Пользователь обновлен успешно", user, status: 200 };
+      return { message: "Пользователь обновлен", user, status: 200 };
     } catch (error) {
       next(error);
     }
